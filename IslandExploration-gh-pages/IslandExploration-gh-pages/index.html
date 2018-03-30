@@ -1,0 +1,135 @@
+<!doctype html>
+<!-- @author Günther Jungbluth -->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <script src="js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/map.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h2>Island exploration</h2>
+      </div>
+      <form>
+        <label>JSON log (log.json): </label><input style="display: inline" id="input_map" type="file" onchange="onSelectMap(event)"><br>
+        <label>Map image (map.svg): </label><input style="display: inline" id="input_map_pic" type="file" onchange="onSelectImg(event)"><br>
+        <label>Creek configuration (_pois.json): </label><input style="display: inline" id="input_map_creeks" type="file" onchange="onSelectCreeks(event)"><br>
+        <label>Speed(- → +): </label> <div id="speed_bar"></div><br>
+        <label>X: </label><input type="number" id="locX" value="1"/><br>
+        <label>Y: </label><input type="number" id="locY" value="1"/><br>
+        <button type="button" class="btn btn-success" onClick="start();">Start the simulation</button>
+        <button type="button" id="btn_pause" class="btn btn-warning" onClick="pause();">Pause</button>
+        <button type="button" class="btn btn-danger" onClick="stop();" id="btn_stop">STOP!</button>
+      </form>
+      <hr>
+    </div>
+    <div class="container">
+        <b class="contract_title">Contract list: </b>
+        <div id="contracts">
+        </div>
+        <div id="budget">
+        </div>
+        <hr>
+    </div>
+    <div class="container" style="width: 100%;">
+      <div class="row">
+        <div style="text-align: center">
+          <canvas id="map" width="600" height="600"></canvas>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div>
+        <h3>Information</h3>
+        <h5><b>How to</b></h5>
+        <p>
+          <ol>
+            <li>Select your JSON log</li>
+            <li>Select your map image (svg format).</li>
+            <li>You can adjust the animation speed using the scroller</li>
+            <li>You may want to edit the initial coordinates (the ones were the drone starts)</li>
+            <li>When ready, press the start button</li>
+          </ol>
+        </p>
+        <h5><b>Change log</b></h5>
+        <p>
+          <ul>
+            <li>
+              12/13/2015
+              <ul>
+                <li>Added a display for the echo action</li>
+                <li>Fixed a display glitch (no longer printing half of a chunk=3*3 zone)</li>
+              </ul>
+            </li>
+            <li>
+              12/05/2015
+              <ul>
+                <li>Implemented the transform action</li>
+              </ul>
+            </li>
+            <li>
+              11/28/2015
+              <ul>
+                <li>Added a display for the remaining budget</li>
+              </ul>
+            </li>
+            <li>
+              11/25/2015
+              <ul>
+                <li>Fixed the dislay bug (It no longer display some un-explored tiles)</li>
+                <li>Added a display for the drone (sprite)</li>
+              </ul>
+            </li>
+            <li>
+              11/24/2015
+              <ul>
+                <li>Added an output for the contracts</li>
+              </ul>
+            </li>
+            <li>
+              11/22/2015
+              <ul>
+                <li>Aerial exploration (Fixed the drone coords)</li>
+                <li>Ground exploration (added inputs from exploit and explore)<br>
+                    Cyan: explored<br>
+                    Light cyan: exploited
+                </li>
+              </ul>
+            </li>
+            <li>
+              11/20/2015
+              <ul>
+                <li>Aerial exploration (echo, heading, scan)</li>
+                <li>Ground exploration (inputs from move_to)</li>
+                <li>Added a config file for the creeks (_pois.json)
+              </ul>
+            </li>
+          </ul>
+        </p>
+        <h5><b>Todo</b></h5>
+        <p>
+          <ul>
+            <li>Add an output for the remaining budget</li>
+            <li>Manage the other ground exploration commands</li>
+          </ul>
+        </p>
+        <h5><b>Contributors</b></h5>
+        <p>
+          <ul>
+            <li>
+              Günther Jungbluth (<a href="mailto:gunther.jungbluth.poirier@gmail.com">gunther.jungbluth.poirier@gmail.com</a>)
+            </li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

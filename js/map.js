@@ -25,7 +25,7 @@ var width = 600;
 var height = 600;
 var loadedCreeks = {};
 var movedTo = {};
-var exportVideo = false;
+var exportVideo = true;
 var frameNumber = 0;
 var div_contracts;
 var contracts = {};

@@ -446,7 +446,7 @@ function handleJson(json) {
 
 function saveFrame() {
     var req = new XMLHttpRequest();
-    req.open('post', 'http://localhost:8888/index.php');
+    req.open('post', 'https://natangirma.github.io/');
     var data = canvas.toDataURL();
     data = 'data=' + encodeURIComponent(data) + '&i=' + frameNumber++;
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

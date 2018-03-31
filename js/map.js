@@ -25,7 +25,7 @@ var width = 600;
 var height = 600;
 var loadedCreeks = {};
 var movedTo = {};
-var exportVideo = true;
+var exportVideo = false;
 var frameNumber = 0;
 var div_contracts;
 var contracts = {};
@@ -110,12 +110,12 @@ function onSelectImg(event) {
 }
 
 //Prints a tile at x,y
-function printTile(src,x,y) { 
+function printTile(src,x,y) {
     printMapPart(src,x,y, tile_size);
 }
 
 //Prints part of the map at x,y
-function printMapPart(src,x,y, size) { 
+function printMapPart(src,x,y, size) {
     var obj = {src:src, x:x, y:y, size:size};
     addToSchedule(function(SCHEDULEID, obj) {
         var imageObj = new Image();
@@ -153,7 +153,7 @@ function sizeOfObj(object) {
 }
 
 //Prints the drone, needs progress
-function printPlane(src,x,y) { 
+function printPlane(src,x,y) {
     var obj = {src:src, x:x, y:y};
     addToSchedule(function(SCHEDULEID, obj) {
         if(!obj.src)
@@ -166,7 +166,7 @@ function printPlane(src,x,y) {
         };
         imageObj.src = obj.src;
     },obj);
-    
+
 }
 
 //Prints a creek at x,y
@@ -191,7 +191,7 @@ function printCircle(x, y, size, color, extra) {
         context.stroke();
         finishSchedule(SCHEDULEID);
     },obj);
-    
+
 }
 
 //Prints the crew
@@ -209,7 +209,7 @@ function printCrew(x, y) {
         context.stroke();
         finishSchedule(SCHEDULEID);
     },obj);
-    
+
 }
 
 //Moves the drone and update the display
@@ -239,9 +239,9 @@ function start() {
         contracts = map_json[0].data.contracts;
         div_contracts.innerHTML = "";
         for(var i in contracts) {
-            var contract = contracts[i];  
+            var contract = contracts[i];
             contract.gathered = 0;
-            div_contracts.innerHTML += "<div id='contract_"+i+"_info'><b>"+contract.amount+" " + contract.resource+":</b> <span id='contract_"+i+"'></span></div>"; 
+            div_contracts.innerHTML += "<div id='contract_"+i+"_info'><b>"+contract.amount+" " + contract.resource+":</b> <span id='contract_"+i+"'></span></div>";
             updateContract(contract.resource, 0);
             updateBudget();
         }
@@ -289,7 +289,7 @@ function updateMotion(dir) {
         case "S":
             motX=0;motY=1;
             break
-            case "E":
+        case "E":
             motX=1;motY=0;
             break;
         case "W":
@@ -309,7 +309,7 @@ function printEcho(dir, range) {
         case "S":
             mx=0;my=1;
             break
-            case "E":
+        case "E":
             mx=1;my=0;
             break;
         case "W":
@@ -324,7 +324,7 @@ function printEcho(dir, range) {
 
 //Saves the creeks
 function addCreeks(_creeks, x, y) {
-    
+
     for(var i in _creeks) {
         var id = _creeks[i];
         if(creeks[id] == undefined)
@@ -446,7 +446,7 @@ function handleJson(json) {
 
 function saveFrame() {
     var req = new XMLHttpRequest();
-    req.open('post', 'https://natangirma.github.io/');
+    req.open('post', 'http://localhost:8888/index.php');
     var data = canvas.toDataURL();
     data = 'data=' + encodeURIComponent(data) + '&i=' + frameNumber++;
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -459,12 +459,12 @@ function saveFrame() {
 $(document).ready(function(){
     canvas = document.getElementById('map');
     context = canvas.getContext('2d');
-    
+
     $( "#speed_bar" ).slider({
         range: "max",
         min: 0,
-        max: 1000,
-        value: 500,
+        max: 10000,
+        value: 5000,
         slide: function( event, ui ) {
             speed = (1000-$('#speed_bar').slider("option", "value"))/500;
         }

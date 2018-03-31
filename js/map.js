@@ -441,7 +441,7 @@ function handleJson(json) {
                 saveFrame();
             finishSchedule(SCHEDULEID);
         });
-    }, 1000000);
+    }, 0.1);
 }
 
 function saveFrame() {

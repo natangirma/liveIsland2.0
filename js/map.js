@@ -466,7 +466,7 @@ $(document).ready(function(){
         max: 10000,
         value: 5000,
         slide: function( event, ui ) {
-            speed = (1000-$('#speed_bar').slider("option", "value"))/500;
+            speed = 100;
         }
     });
     $("#speed_bar").keyup(function() {

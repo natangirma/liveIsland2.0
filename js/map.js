@@ -3,7 +3,7 @@
 */
 
 var map_json = {};
-var speed = 1.0;
+var speed = 500.0;
 var img = "http://ace-design.github.io/IslandExploration/img/week46.png";
 var img_black = "http://ace-design.github.io/IslandExploration/img/black.png";
 var canvas;

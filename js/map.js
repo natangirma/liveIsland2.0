@@ -441,7 +441,7 @@ function handleJson(json) {
                 saveFrame();
             finishSchedule(SCHEDULEID);
         });
-    }, speed <= 0.01 ? 0 : speed*100);
+    });
 }
 
 function saveFrame() {
@@ -466,7 +466,7 @@ $(document).ready(function(){
         max: 10000,
         value: 5000,
         slide: function( event, ui ) {
-            speed = 100;
+            speed = 1000;
         }
     });
     $("#speed_bar").keyup(function() {
